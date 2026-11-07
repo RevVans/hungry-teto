@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://p4fkm0o8m02s"]
+
+[ext_resource type="PackedScene" uid="uid://cg2vdp046a4bi" path="res://Scenes/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b5gdbe1xfgx4d" path="res://Scenes/Fruit.tscn" id="3"]
+[ext_resource type="Script" uid="uid://c3mrvgclhxd8v" path="res://Scripts/spawner.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://cmonuv1famx5c" path="res://heart_restore.tscn" id="4_jjvhh"]
+
+[sub_resource type="Gradient" id="Gradient_dewec"]
+offsets = PackedFloat32Array(0.18674698, 1)
+colors = PackedColorArray(0.93, 0.891715, 0.80910003, 1, 0.94, 0.76562995, 0.44180003, 1)
+metadata/_snap_count = 8
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gntrk"]
+gradient = SubResource("Gradient_dewec")
+width = 800
+
+[node name="Main" type="Node2D" unique_id=997215606]
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1026677688]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer" unique_id=1983724273]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.85, 1.335)
+offset_transform_rotation = -4.712389
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_gntrk")
+stretch_mode = 1
+
+[node name="Player" parent="." unique_id=1196679356 instance=ExtResource("2")]
+position = Vector2(400, 550)
+
+[node name="Spawner" type="Timer" parent="." unique_id=820260570]
+wait_time = 0.4
+autostart = true
+script = ExtResource("4")
+fruit_scene = ExtResource("3")
+
+[node name="Spawner2" type="Timer" parent="." unique_id=1303572064]
+wait_time = 1.2999999999999998
+autostart = true
+script = ExtResource("4")
+fruit_scene = ExtResource("4_jjvhh")

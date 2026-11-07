@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cmonuv1famx5c"]
+
+[ext_resource type="Texture2D" uid="uid://bt565chmsorls" path="res://Assets/fruit-restore_health.png" id="1_e7xrj"]
+[ext_resource type="Script" uid="uid://dlxkcjunemtmm" path="res://heart_restore.gd" id="1_tpkw3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tpkw3"]
+
+[node name="HeartRestore" type="Area2D" unique_id=722952092]
+script = ExtResource("1_tpkw3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=499739819]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_e7xrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=687895087]
+shape = SubResource("CircleShape2D_tpkw3")
