@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjkxd3c1ljqvx" path="res://Scripts/player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bod4eajpm757" path="res://Assets/player-teto.png" id="2_kyqiw"]
+[ext_resource type="AudioStream" uid="uid://bhp2w6k5yksst" path="res://Assets/pjsk-note-tap.mp3" id="3_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(32, 32)
@@ -17,3 +18,6 @@ texture = ExtResource("2_kyqiw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1842932256]
 scale = Vector2(2.5, 2.5)
 shape = SubResource("1")
+
+[node name="CatchSound" type="AudioStreamPlayer" parent="." unique_id=508148875]
+stream = ExtResource("3_6t5aa")

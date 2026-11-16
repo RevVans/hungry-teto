@@ -10,8 +10,33 @@ var _dash_time_left : float = 0.0
 var _dash_cooldown_left : float = 0.0
 var _dash_direction : float = 0.0
 var _last_direction : float = 1.0
+var _start_position : Vector2
 
+func _ready():
+	add_to_group("player")
+	_start_position = position
+	var gm = get_node("/root/Main/GameManager")
+	if gm:
+		gm.game_started.connect(_on_game_started)
+
+func _on_game_started():
+	position = _start_position
+	_dash_time_left = 0.0
+	_dash_cooldown_left = 0.0
+	_dash_direction = 0.0
+	_last_direction = 1.0
+	
 func _process(delta):
+	var gm = get_node("/root/Main/GameManager")
+	if gm:
+		if not gm.is_started:
+			# Tekan SPACE untuk mulai. return supaya dash tidak ikut terpicu.
+			if Input.is_action_just_pressed("dash"):
+				gm.start_game()
+			return
+		if gm.is_game_over:
+			return
+	
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction != 0.0:
 		_last_direction = direction
@@ -35,3 +60,6 @@ func _process(delta):
 	# Jangan keluar layar.
 	var view_size = get_viewport_rect().size
 	position.x = clamp(position.x, 0, view_size.x)
+	
+func play_catch_sfx():
+	$CatchSound.play()

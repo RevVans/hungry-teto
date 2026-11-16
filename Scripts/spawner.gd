@@ -7,6 +7,10 @@ func _ready():
 	timeout.connect(_on_timeout)
 
 func _on_timeout():
+	var gm = get_node("/root/Main/GameManager")
+	if gm and (gm.is_game_over or not gm.is_started):
+		return
+		
 	# Aman kalau slot fruit_scene belum diisi di Inspector.
 	if fruit_scene == null:
 		return

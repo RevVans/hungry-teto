@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmonuv1famx5c"]
 
 [ext_resource type="Texture2D" uid="uid://bt565chmsorls" path="res://Assets/fruit-restore_health.png" id="1_e7xrj"]
-[ext_resource type="Script" uid="uid://dlxkcjunemtmm" path="res://heart_restore.gd" id="1_tpkw3"]
+[ext_resource type="Script" uid="uid://dlxkcjunemtmm" path="res://Scripts/heart_restore.gd" id="1_tpkw3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tpkw3"]
 

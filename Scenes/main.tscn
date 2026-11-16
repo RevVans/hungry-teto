@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://p4fkm0o8m02s"]
 
-[ext_resource type="PackedScene" uid="uid://cg2vdp046a4bi" path="res://Scenes/Player.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://b5gdbe1xfgx4d" path="res://Scenes/Fruit.tscn" id="3"]
+[ext_resource type="Script" uid="uid://8tsi8c4c70wu" path="res://Scripts/game_manager.gd" id="1_kry3j"]
+[ext_resource type="PackedScene" uid="uid://cg2vdp046a4bi" path="res://Scenes/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b5gdbe1xfgx4d" path="res://Scenes/fruit.tscn" id="3"]
 [ext_resource type="Script" uid="uid://c3mrvgclhxd8v" path="res://Scripts/spawner.gd" id="4"]
-[ext_resource type="PackedScene" uid="uid://cmonuv1famx5c" path="res://heart_restore.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cmonuv1famx5c" path="res://Scenes/heart_restore.tscn" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://dugvl2hje3rck" path="res://Scripts/hud.gd" id="6_6bp64"]
+[ext_resource type="FontFile" uid="uid://cjcbkec720tun" path="res://Assets/Minecraft.ttf" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://dkktetp6hciv5" path="res://Scenes/game_over.tscn" id="7_gameover"]
 
 [sub_resource type="Gradient" id="Gradient_dewec"]
 offsets = PackedFloat32Array(0.18674698, 1)
@@ -33,17 +37,64 @@ mouse_filter = 2
 texture = SubResource("GradientTexture1D_gntrk")
 stretch_mode = 1
 
+[node name="GameManager" type="Node" parent="." unique_id=271059812]
+script = ExtResource("1_kry3j")
+
 [node name="Player" parent="." unique_id=1196679356 instance=ExtResource("2")]
 position = Vector2(400, 550)
 
 [node name="Spawner" type="Timer" parent="." unique_id=820260570]
-wait_time = 0.4
+wait_time = 0.55
 autostart = true
 script = ExtResource("4")
 fruit_scene = ExtResource("3")
 
 [node name="Spawner2" type="Timer" parent="." unique_id=1303572064]
-wait_time = 1.2999999999999998
+wait_time = 1.9
 autostart = true
 script = ExtResource("4")
 fruit_scene = ExtResource("4_jjvhh")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=266147497]
+script = ExtResource("6_6bp64")
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=537123871]
+offset_top = 45.0
+offset_right = 100.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("6_21xkr")
+theme_override_font_sizes/font_size = 32
+text = "Score:"
+
+[node name="LivesLabel" type="Label" parent="HUD" unique_id=155237177]
+offset_top = 12.0
+offset_right = 90.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_21xkr")
+theme_override_font_sizes/font_size = 32
+text = "Lives:"
+
+[node name="StartLabel" type="Label" parent="HUD" unique_id=1424456850]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.5
+offset_top = -24.0
+offset_right = 256.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_21xkr")
+theme_override_font_sizes/font_size = 48
+text = "Press SPACE to Start!
+tips: use DASH!! ( SPACE )"
+horizontal_alignment = 1
+
+[node name="GameOver" parent="." unique_id=1421601182 instance=ExtResource("7_gameover")]
